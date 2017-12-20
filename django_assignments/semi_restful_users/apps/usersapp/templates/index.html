@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HELLO</h1>
+        <table>
+            <tr>
+                <th class='col-md-1'>ID</th>
+                <th class='col-md-3'>NAME</th>
+                <th class='col-md-4'>EMAIL</th>
+                <th class='col-md-2'>CREATED AT</th>
+                <th class='col-md-2'>ACTIONS</th>
+            </tr>    
+        {% for user in users %}
+            <tr>
+                <td class='col-md-1'>{{user.id}}</td>    
+                <td class='col-md-3'>{{user.name}}</td>
+                <td class='col-md-4'>{{user.email}}</td>
+                <td class='col-md-2'>{{user.created_at}}</td>            
+                <td class="actions">
+
+                
+                <form action="/users/{{user.id}}/edit" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Edit">
+                </form>
+
+                <form action="/users/{{user.id}}" method="post">
+                   <!-- removed / after user.id}} '/'  ^^ -->
+                    {% csrf_token %}
+                    <input type="submit" value="Show">
+                </form>
+
+                <form action="/users/{{user.id}}/destroy" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Destroy">
+                </form>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="LOGOUT">
+    </form>
+
+    <h1>Success! Welcome, {{user.first_name}}   {{user.birthday}}</h1>
+
+    <table>
+        <tr>
+            <th class='col-md-1'>__Name__</th>
+            <th class='col-md-2'>__Alias__</th>
+            <th class='col-md-3'>__Email__</th>
+            <th class='col-md-4'>__Poke History__</th>
+            <th class='col-md-5'>__Action__</th>
+        </tr>    
+    {% for user in users %}
+        <tr>
+            <td class='col-md-1'>{{user.first_name}} {{user.last_name}}</td>    
+            <td class='col-md-2'>{{user.first_name}}</td>
+            <td class='col-md-3'>{{user.email}}</td>   
+            <td class='col-md-4'>{{user.email}}</td>    
+            <td class="actions">
+                            
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Edit">
+            </form>
+
+            <form action="" method="post">
+               <!-- removed / after user.id}} '/'  ^^ -->
+                {% csrf_token %}
+                <input type="submit" value="Show">
+            </form>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Destroy">
+            </form>
+
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+
+
+  
+</body>
+</html>
